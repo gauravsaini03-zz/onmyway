@@ -1,2 +1,3 @@
-# onmyway
-Logistics app using sailsjs
+# seqhack
+
+a [Sails](http://sailsjs.org) application
