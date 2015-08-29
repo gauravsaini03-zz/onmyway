@@ -7,7 +7,7 @@
 
 var gcm = require('node-gcm');
 var message = new gcm.Message();
-var sender = new gcm.Sender('YOUR_API_KEY_HERE');
+var sender = new gcm.Sender('AIzaSyDlogF2t42Ep5940UE7vJFMLHwWClsp6LI');
 
 module.exports = {
 
@@ -21,36 +21,22 @@ module.exports = {
             } else{
                 res.json({success:true});
 
-//                var gcm = require('node-gcm');
+                message.addData('title', 'New Listing');
+                message.addData('message', 'new message');
 
-  //              var message = new gcm.Message();
+                var regIds = ['dn8Xf-G0DDk:APA91bELjKRinqZmlmEycnmdAz6IT8zduCmFSRfwEHb57Y4UFwKLt767fX3tA7NBVXA_MzpCVTNGzmCOJcwDiAWjO6BXQeIloBr2ZzzBq6lxFA81ISE2ixP-HTLcaSYz1rx4Vp1ya8Em']
 
-                //var regIds = ['YOUR_REG_ID_HERE'];
-                var message = new gcm.Message({
-					collapseKey: 'demo',
-					priority: 'high',
-					contentAvailable: true,
-					delayWhileIdle: true,
-					timeToLive: 3,
-					restrictedPackageName: "somePackageName",
-					dryRun: true,
-					data: {
-						key1: 'message1',
-						key2: 'message2'
-					},
-					notification: {
-						title: "Hello, World",
-						icon: "ic_launcher",
-						body: "This is a notification that will be displayed ASAP."
-					}
-				});
-
-                var regIds = req.param('regIds');
-
+                //Now the sender can be used to send messages
                 sender.send(message, regIds, function (err, result) {
                     if(err) console.error(err);
                     else    console.log(result);
                 });
+
+                sender.sendNoRetry(message, regIds, function (err, result) {
+                    if(err) console.error(err);
+                    else    console.log(result);
+                });
+
                 
             }
         });

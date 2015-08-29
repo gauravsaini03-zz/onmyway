@@ -1,6 +1,6 @@
 var User = {
   attributes: {
-    username: {
+    user: {
         type:'string',
         required: true
     },

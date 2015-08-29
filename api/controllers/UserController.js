@@ -7,20 +7,21 @@
 
 module.exports = {
     login: function(req,res){
-        var user     =   req.param('user');
-        var password =   req.param('password');
-
-        List.findByUser(user)
+        var username =   req.body.user;
+        var password =   req.body.password;
+        
+        User.findByUser(username)
             .exec(function(err,user){
-            console.log(user);
-            
-            
+            user =  user[0];
             if(err)
-                res.json({error:err});
-              if(user === undefined)
-                res.notFound();
-              else
-                res.json(listings);
+                res.json({error:err});          
+            if(user === undefined)
+                res.notFound(); 
+            if(user.password === req.body.password) {
+                res.json(user);
+            } else {
+                res.json({status:401,message:"Username and password does not match"})
+            }
         })
     }
 };
