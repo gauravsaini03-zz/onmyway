@@ -2,7 +2,8 @@ var User = {
   attributes: {
     user: {
         type:'string',
-        required: true
+        required: true,
+        primaryKey: true
     },
     password: {
         type:'string',

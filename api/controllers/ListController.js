@@ -21,23 +21,27 @@ module.exports = {
             } else{
                 res.json({success:true});
 
-                message.addData('title', 'New Listing');
-                message.addData('message', 'new message');
-
-                var regIds = ['dn8Xf-G0DDk:APA91bELjKRinqZmlmEycnmdAz6IT8zduCmFSRfwEHb57Y4UFwKLt767fX3tA7NBVXA_MzpCVTNGzmCOJcwDiAWjO6BXQeIloBr2ZzzBq6lxFA81ISE2ixP-HTLcaSYz1rx4Vp1ya8Em']
-
-                //Now the sender can be used to send messages
-                sender.send(message, regIds, function (err, result) {
-                    if(err) console.error(err);
-                    else    console.log(result);
-                });
-
-                sender.sendNoRetry(message, regIds, function (err, result) {
-                    if(err) console.error(err);
-                    else    console.log(result);
-                });
-
+                message.addData('title', req.body.title);
+                message.addData('message','from: '+req.body.from+' '+'to: ' + req.body.to);
                 
+                var regIds = [];
+                Push.findByType('carrier').exec(function createCB(err, res){
+                    
+                    res.forEach(function(key){   
+                        regIds.push(key.regid);
+                    })
+
+                    sender.send(message, regIds, function (err, result) {
+                        if(err) console.error(err);
+                        else    console.log(result);
+                    });
+
+                    sender.sendNoRetry(message, regIds, function (err, result) {
+                        if(err) console.error(err);
+                        else    console.log(result);
+                    });
+
+                });                
             }
         });
     },
