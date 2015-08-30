@@ -23,6 +23,7 @@ module.exports = {
 
                 message.addData('title', "You are Selected");
                 message.addData('message', 'Hurray and take up the order');
+                message.addData('listid',req.body.listid);
 
                 var regIds = [];
                 Push.find().where({carrierid:req.body.carrierid}).exec(function createCB(err, result){

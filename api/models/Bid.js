@@ -13,7 +13,7 @@ module.exports = {
     },
     userid: {
         type:'integer',
-        primaryKey: true,
+        unique: true,
         required: true
     },
 	listid: {
