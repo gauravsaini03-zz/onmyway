@@ -3,7 +3,6 @@ var User = {
     user: {
         type:'string',
         required: true,
-        unique: true
     },
     password: {
         type:'string',

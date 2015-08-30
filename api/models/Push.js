@@ -14,8 +14,7 @@ module.exports = {
     },
     userid: {
         type:'integer',
-        required: true,
-        primaryKey: true
+        required: true
     },
     type: {
         type: 'string',

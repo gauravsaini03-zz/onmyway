@@ -26,8 +26,9 @@ module.exports = {
                 message.addData('listid',req.body.listid);
 
                 var regIds = [];
-                Push.find().where({carrierid:req.body.carrierid}).exec(function createCB(err, result){
-                    regIds.push(result.regid);
+                Push.find().where({userid:req.body.carrierid}).exec(function createCB(err, result){
+			console.log(result);
+                    regIds.push(result[0].regid);
 
                     sender.send(message, regIds, function (err, result) {
                         if(err) console.error(err);
