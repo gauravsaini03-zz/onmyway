@@ -21,7 +21,8 @@ module.exports = {
         type:'string',
         required: true
     },
-	geolocation: 'string',
+	fromgeolocation: 'string',
+	togeolocation: 'string',
 	status: {
 	    type: 'string',
         defaultsTo: 'pending',

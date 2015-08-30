@@ -12,6 +12,7 @@ module.exports = {
         type:'integer',
         required: true
     },
+    destination: 'string',
     userid: {
         type:'integer',
         required: true
