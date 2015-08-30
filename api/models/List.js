@@ -34,7 +34,11 @@ module.exports = {
 	bids: {
 	    collection: 'bid',
 	    via: 'listid'
-	}
+	},
+    batches: {
+        collection: 'batch',
+        via: 'listid'
+    }
   },
   getFullName: function (){
       return this.from + ' ' + this.to;
